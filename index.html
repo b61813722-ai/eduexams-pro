@@ -3,40 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduExams Pro - Sujets, Exercices & Annales Corrigées</title>
+  <title>EduExams - Sujets, Exercices & Annales Corrigées</title>
 
-  <!-- Google Fonts & FontAwesome -->
+  <!-- Google Fonts & FontAwesome pour les icônes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* ============================================================
-       1. VARIABLES & RESET
-       ============================================================ */
+    /* ==========================================
+       1. STYLES GÉNÉRAUX & VARIABLES
+       ========================================== */
     :root {
-      --primary: #3b82f6;
-      --primary-dark: #2563eb;
-      --primary-glow: rgba(59, 130, 246, 0.25);
-      
-      --gold: #f59e0b;
-      --gold-dark: #d97706;
-      --gold-glow: rgba(245, 158, 11, 0.3);
-
-      --bg-dark: #0f172a;
-      --bg-body: #f8fafc;
-      --card-bg: #ffffff;
-      
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --accent-vip: #f59e0b;
+      --accent-vip-hover: #d97706;
+      --bg-main: #f8fafc;
+      --surface: #ffffff;
       --text-main: #0f172a;
       --text-muted: #64748b;
       --border: #e2e8f0;
-
-      --radius-sm: 10px;
-      --radius-md: 16px;
-      --radius-lg: 24px;
-      --shadow-subtle: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
-      --shadow-hover: 0 20px 40px -15px rgba(37, 99, 235, 0.12);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08);
+      --radius: 16px;
     }
 
     * {
@@ -44,601 +35,378 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--bg-body);
+      background-color: var(--bg-main);
       color: var(--text-main);
-      overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* ============================================================
-       2. NAVBAR MODERN (Glassmorphism)
-       ============================================================ */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ==========================================
+       2. NAVIGATION BAR
+       ========================================== */
     .navbar {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      padding: 1rem 7%;
+      z-index: 100;
+      padding: 1rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: all 0.3s ease;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 800;
-      color: var(--bg-dark);
-      text-decoration: none;
-    }
-
-    .brand-icon {
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 8px 16px var(--primary-glow);
-    }
-
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-link {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-
-    .nav-link:hover {
       color: var(--primary);
     }
 
-    .btn-vip-header {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    .brand i {
+      font-size: 1.6rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn-vip-nav {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
       color: white !important;
-      padding: 0.6rem 1.4rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 50px;
       font-weight: 700 !important;
-      box-shadow: 0 8px 20px var(--gold-glow);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
     }
 
-    .btn-vip-header:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 25px var(--gold-glow);
-    }
-
-    /* ============================================================
-       3. HERO SECTION (Sombre & Futuristic)
-       ============================================================ */
+    /* ==========================================
+       3. HERO SECTION
+       ========================================== */
     .hero {
-      background: radial-gradient(circle at top right, #1e293b, #0f172a);
+      background: linear-gradient(135deg, #1e293b, #0f172a);
       color: white;
-      padding: 5rem 7% 6rem;
+      padding: 4rem 5% 5rem;
       text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 0.4rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #93c5fd;
-      margin-bottom: 1.5rem;
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 800;
-      line-height: 1.2;
-      max-width: 850px;
-      margin: 0 auto 1.2rem;
-      letter-spacing: -0.5px;
+      margin-bottom: 1rem;
     }
 
     .hero h1 span {
-      background: linear-gradient(135deg, #60a5fa, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #60a5fa;
     }
 
     .hero p {
+      font-size: 1.1rem;
       color: #94a3b8;
-      font-size: 1.15rem;
       max-width: 650px;
-      margin: 0 auto 2.5rem;
-      font-weight: 400;
+      margin: 0 auto 2rem;
     }
 
-    /* Barre de recherche futuriste */
-    .search-wrapper {
-      max-width: 650px;
+    /* Barre de recherche */
+    .search-box {
+      max-width: 600px;
       margin: 0 auto;
       position: relative;
     }
 
-    .search-input {
+    .search-box input {
       width: 100%;
-      padding: 1.25rem 1.5rem 1.25rem 3.5rem;
+      padding: 1.1rem 1.5rem 1.1rem 3.2rem;
       border-radius: 50px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(10px);
-      color: white;
-      font-size: 1.05rem;
+      border: none;
+      font-size: 1rem;
+      box-shadow: var(--shadow-md);
       outline: none;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-      transition: all 0.3s;
     }
 
-    .search-input::placeholder { color: #64748b; }
-
-    .search-input:focus {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
-    }
-
-    .search-icon {
+    .search-box i {
       position: absolute;
-      left: 1.3rem;
+      left: 1.2rem;
       top: 50%;
       transform: translateY(-50%);
-      color: #60a5fa;
-      font-size: 1.3rem;
-    }
-
-    /* ============================================================
-       4. STATS STRIP
-       ============================================================ */
-    .stats-container {
-      max-width: 1100px;
-      margin: -2.5rem auto 3rem;
-      padding: 0 1.5rem;
-      position: relative;
-      z-index: 10;
-    }
-
-    .stats-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 1.5rem 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      box-shadow: var(--shadow-subtle);
-      text-align: center;
-    }
-
-    .stat-item h4 {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--bg-dark);
-    }
-
-    .stat-item p {
-      font-size: 0.85rem;
       color: var(--text-muted);
-      font-weight: 600;
+      font-size: 1.2rem;
     }
 
-    /* ============================================================
-       5. CONTENT SECTION & FILTERS
-       ============================================================ */
-    .main-content {
+    /* ==========================================
+       4. CONTENU PRINCIPAL & FILTRES
+       ========================================== */
+    .main-container {
       max-width: 1200px;
-      margin: 0 auto 5rem;
+      margin: -2rem auto 4rem;
       padding: 0 1.5rem;
     }
 
-    .filter-bar {
+    .filter-tabs {
       display: flex;
       justify-content: center;
-      gap: 0.8rem;
-      margin-bottom: 3rem;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
       flex-wrap: wrap;
     }
 
-    .filter-btn {
-      background: var(--card-bg);
+    .tab-btn {
+      background: var(--surface);
       border: 1px solid var(--border);
-      padding: 0.75rem 1.6rem;
+      padding: 0.6rem 1.4rem;
       border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: 600;
       cursor: pointer;
       color: var(--text-muted);
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      transition: all 0.2s;
     }
 
-    .filter-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-2px);
-    }
-
-    .filter-btn.active {
+    .tab-btn.active, .tab-btn:hover {
       background: var(--primary);
       color: white;
       border-color: var(--primary);
-      box-shadow: 0 8px 20px var(--primary-glow);
     }
 
-    .filter-btn.vip-filter.active {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      border-color: var(--gold);
-      box-shadow: 0 8px 20px var(--gold-glow);
+    .tab-btn.vip-tab.active {
+      background: var(--accent-vip);
+      border-color: var(--accent-vip);
     }
 
-    /* Cards Grid */
-    .grid-container {
+    /* Grille de documents */
+    .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
     }
 
-    .doc-card {
-      background: var(--card-bg);
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.8rem;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.25s, box-shadow 0.25s;
       position: relative;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: var(--shadow-subtle);
+      overflow: hidden;
     }
 
-    .doc-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(59, 130, 246, 0.4);
-    }
-
-    .doc-card.card-vip {
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      background: linear-gradient(180deg, #ffffff 0%, #fffdfa 100%);
-    }
-
-    .doc-card.card-vip:hover {
-      border-color: var(--gold);
-      box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.2);
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
     }
 
     /* Badges */
-    .card-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 50px;
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
       font-size: 0.75rem;
-      font-weight: 800;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       width: fit-content;
     }
 
-    .badge-free {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-    }
+    .badge-free { background: #dbeafe; color: #1e40af; }
+    .badge-vip { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
 
-    .badge-vip {
-      background: #fef3c7;
-      color: #b45309;
-      border: 1px solid #fde68a;
-    }
-
-    .doc-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--bg-dark);
-      margin-bottom: 0.6rem;
-      line-height: 1.35;
-    }
-
-    .doc-desc {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
-      margin-bottom: 1.8rem;
-    }
-
-    /* Action Buttons */
-    .btn-action {
-      width: 100%;
-      padding: 0.9rem;
-      border-radius: var(--radius-sm);
+    .card-title {
+      font-size: 1.2rem;
       font-weight: 700;
-      font-size: 0.95rem;
-      border: none;
-      cursor: pointer;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Boutons de téléchargement / Achat */
+    .btn-action {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      transition: all 0.2s ease;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
     }
 
-    .btn-download {
-      background: #f1f5f9;
-      color: var(--bg-dark);
-    }
-
-    .btn-download:hover {
+    .btn-free {
       background: var(--primary);
       color: white;
     }
 
-    .btn-unlock {
-      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    .btn-free:hover { background: var(--primary-dark); }
+
+    .btn-vip {
+      background: linear-gradient(135deg, var(--accent-vip), var(--accent-vip-hover));
       color: white;
-      box-shadow: 0 6px 18px var(--gold-glow);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
     }
 
-    .btn-unlock:hover {
-      transform: scale(1.02);
-    }
+    .btn-vip:hover { opacity: 0.95; }
 
-    /* ============================================================
-       6. MODAL DE PAIEMENT ULTRA-MODERNE
-       ============================================================ */
-    .modal-backdrop {
+    /* ==========================================
+       5. MODAL DE PAIEMENT (OFFRE VIP)
+       ========================================== */
+    .modal-overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.75);
-      backdrop-filter: blur(8px);
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(4px);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 2000;
+      z-index: 1000;
       padding: 1rem;
     }
 
-    .modal-content {
-      background: white;
-      border-radius: var(--radius-lg);
-      max-width: 480px;
+    .modal {
+      background: var(--surface);
+      border-radius: var(--radius);
+      max-width: 500px;
       width: 100%;
-      padding: 2.2rem;
+      padding: 2rem;
       position: relative;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      animation: modalSlide 0.3s ease-out;
+      animation: popIn 0.3s ease-out;
     }
 
-    @keyframes modalSlide {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    .modal-close {
+    .close-modal {
       position: absolute;
-      top: 1.2rem;
-      right: 1.2rem;
-      width: 36px;
-      height: 36px;
-      background: #f1f5f9;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      top: 1rem; right: 1.2rem;
+      font-size: 1.5rem;
       cursor: pointer;
       color: var(--text-muted);
-      transition: background 0.2s;
     }
-
-    .modal-close:hover { background: #e2e8f0; }
 
     .modal-header {
       text-align: center;
       margin-bottom: 1.5rem;
     }
 
-    .vip-icon-wrapper {
-      width: 64px;
-      height: 64px;
-      background: #fef3c7;
-      color: var(--gold);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin: 0 auto 1rem;
-      border: 2px solid #fde68a;
+    .modal-header i {
+      font-size: 3rem;
+      color: var(--accent-vip);
+      margin-bottom: 0.5rem;
     }
 
-    .payment-card {
+    .payment-box {
       background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
+      border: 1px dashed #cbd5e1;
+      border-radius: 12px;
       padding: 1.2rem;
       margin: 1.5rem 0;
     }
 
-    .payment-row {
+    .payment-method {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       margin-bottom: 0.8rem;
-    }
-
-    .copy-btn {
-      background: white;
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--primary);
-    }
-
-    .copy-btn:hover { background: #eff6ff; }
-
-    .btn-wa-confirm {
-      background: #25d366;
-      color: white;
-      width: 100%;
-      padding: 1rem;
-      border-radius: var(--radius-sm);
-      font-weight: 800;
-      font-size: 1rem;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-      transition: transform 0.2s;
-    }
-
-    .btn-wa-confirm:hover { transform: translateY(-2px); }
-
-    /* Floating WhatsApp Button */
-    .float-wa {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 60px;
-      height: 60px;
-      background: #25d366;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-      z-index: 999;
-      transition: transform 0.3s;
-      text-decoration: none;
-    }
-
-    .float-wa:hover { transform: scale(1.1); }
-
-    /* ============================================================
-       7. FOOTER
-       ============================================================ */
-    footer {
-      background: var(--bg-dark);
-      color: white;
-      padding: 4rem 7% 2rem;
-    }
-
-    .footer-grid {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .footer-col h3 {
-      font-size: 1.2rem;
-      margin-bottom: 1.2rem;
-      color: white;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      color: #94a3b8;
-      margin-bottom: 1rem;
+      font-weight: 600;
       font-size: 0.95rem;
     }
 
-    .contact-item i { color: var(--primary); }
+    .btn-whatsapp {
+      background: #25d366;
+      color: white;
+      text-align: center;
+      width: 100%;
+      padding: 0.9rem;
+      border-radius: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    /* ==========================================
+       6. FOOTER & CONTACT
+       ========================================== */
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 4rem 5% 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .footer-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      color: #f8fafc;
+    }
+
+    .contact-list li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      color: #94a3b8;
+    }
+
+    .contact-list i {
+      color: var(--primary);
+    }
 
     .footer-bottom {
       text-align: center;
       padding-top: 2rem;
       color: #64748b;
-      font-size: 0.88rem;
+      font-size: 0.875rem;
     }
 
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: var(--bg-dark);
-      color: white;
-      padding: 0.8rem 1.6rem;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-      z-index: 3000;
-    }
-
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-
+    /* Responsive adjustments */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2rem; }
-      .nav-menu { display: none; }
+      .hero h1 { font-size: 1.8rem; }
+      .nav-links { display: none; } /* Simplification pour mobile */
     }
   </style>
 </head>
@@ -646,199 +414,173 @@
 
   <!-- NAVBAR -->
   <nav class="navbar">
-    <a href="#" class="brand">
-      <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-      <span>EduExams<span style="color: var(--primary);">.pro</span></span>
-    </a>
-    <ul class="nav-menu">
-      <li><a href="#accueil" class="nav-link">Accueil</a></li>
-      <li><a href="#documents" class="nav-link">Ressources</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
-      <li>
-        <a href="javascript:void(0)" onclick="ouvrirPaiement('Pass VIP Illimité')" class="btn-vip-header">
-          <i class="fa-solid fa-crown"></i> Espace VIP
-        </a>
-      </li>
+    <div class="brand">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <span>EduExams</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#accueil">Accueil</a></li>
+      <li><a href="#documents">Sujets & Exercices</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="javascript:void(0)" onclick="ouvrirModalPaiement('Accès Global VIP')" class="btn-vip-nav"><i class="fa-solid fa-crown"></i> Zone VIP</a></li>
     </ul>
   </nav>
 
   <!-- HERO SECTION -->
   <section class="hero" id="accueil">
-    <div class="hero-badge">
-      <i class="fa-solid fa-bolt"></i> Plateforme N°1 de Révision
-    </div>
-    <h1>Réussissez vos Examens avec <span>les Annales Corrigées</span></h1>
-    <p>Sujets officiels, exercices d'entraînement et livres de corrigés complets rédigés par des professeurs qualifiés.</p>
+    <h1>Réussissez vos Examens avec <span>les Meilleures Annales</span></h1>
+    <p>Accédez gratuitement à des centaines de sujets et d'exercices, ou débloquez nos livres et corrigés détaillés dans l'espace VIP.</p>
     
-    <div class="search-wrapper">
-      <i class="fa-solid fa-magnifying-glass search-icon"></i>
-      <input type="text" id="searchInput" class="search-input" placeholder="Rechercher une matière, une année ou un chapitre...">
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" id="searchInput" placeholder="Rechercher une matière (ex: Philosophie, Histoire, TSS...)...">
     </div>
   </section>
 
-  <!-- STATS STRIP -->
-  <div class="stats-container">
-    <div class="stats-card">
-      <div class="stat-item">
-        <h4>500+</h4>
-        <p>Sujets & Exercices</p>
-      </div>
-      <div class="stat-item">
-        <h4>100%</h4>
-        <p>Corrigés Détaillés</p>
-      </div>
-      <div class="stat-item">
-        <h4>24/7</h4>
-        <p>Accès Instantané</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <main class="main-content" id="documents">
+  <!-- CONTENU PRINCIPAL -->
+  <main class="main-container" id="documents">
     
-    <!-- Filter Tabs -->
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filtrerDocs('tous', this)">
-        <i class="fa-solid fa-border-all"></i> Tous les documents
-      </button>
-      <button class="filter-btn" onclick="filtrerDocs('sujet', this)">
-        <i class="fa-solid fa-file-lines"></i> Sujets d'Examens
-      </button>
-      <button class="filter-btn" onclick="filtrerDocs('exercice', this)">
-        <i class="fa-solid fa-pen-to-square"></i> Exercices
-      </button>
-      <button class="filter-btn vip-filter" onclick="filtrerDocs('vip', this)">
-        <i class="fa-solid fa-crown"></i> Corrigés VIP & Livres
-      </button>
+    <!-- Filtres par catégorie -->
+    <div class="filter-tabs">
+      <button class="tab-btn active" onclick="filtrerCategorie('tous', this)">Tous les documents</button>
+      <button class="tab-btn" onclick="filtrerCategorie('sujet', this)">Sujets d'Examens</button>
+      <button class="tab-btn" onclick="filtrerCategorie('exercice', this)">Exercices</button>
+      <button class="tab-btn vip-tab" onclick="filtrerCategorie('vip', this)"><i class="fa-solid fa-crown"></i> Corrigés VIP & Livres</button>
     </div>
 
-    <!-- Cards Grid -->
-    <div class="grid-container" id="cardsGrid">
-      <!-- Dynamic Content loaded via JS -->
+    <!-- Grille dynamique des cartes -->
+    <div class="cards-grid" id="cardsGrid">
+      <!-- Injecté par JavaScript -->
     </div>
   </main>
 
-  <!-- MODAL DE PAIEMENT VIP -->
-  <div class="modal-backdrop" id="modalPaiement">
-    <div class="modal-content">
-      <div class="modal-close" onclick="fermerPaiement()"><i class="fa-solid fa-xmark"></i></div>
-      
+  <!-- MODAL DE PAIEMENT / VIP -->
+  <div class="modal-overlay" id="modalPaiement">
+    <div class="modal">
+      <span class="close-modal" onclick="fermerModal()">&times;</span>
       <div class="modal-header">
-        <div class="vip-icon-wrapper">
-          <i class="fa-solid fa-lock-open"></i>
-        </div>
-        <h2 style="font-size: 1.4rem; font-weight: 800;">Débloquer le Document</h2>
-        <p id="modalDocTitle" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;"></p>
+        <i class="fa-solid fa-lock-open"></i>
+        <h2>Débloquer le Contenu VIP</h2>
+        <p id="nomDocumentModal" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem;"></p>
       </div>
 
-      <p style="font-size: 0.92rem; text-align: center; color: var(--text-muted);">
-        Réglez vos frais d'accès via Mobile Money puis confirmez sur WhatsApp :
-      </p>
+      <p style="font-size: 0.95rem; text-align: center;">Pour obtenir les <strong>corrigés détaillés</strong> ou les <strong>livres complets</strong>, effectuez le règlement via Mobile Money :</p>
 
-      <div class="payment-card">
-        <div class="payment-row">
-          <span style="font-size: 0.9rem; font-weight: 600;">Orange / Moov Money :</span>
-          <button class="copy-btn" onclick="copierNumero('+22352095804')">
-            <i class="fa-solid fa-copy"></i> Copier
-          </button>
+      <div class="payment-box">
+        <div class="payment-method">
+          <span><i class="fa-solid fa-mobile-screen"></i> Orange Money / Moov / Wave:</span>
+          <strong style="color: var(--primary);">+223 82125851</strong>
         </div>
-        <p style="font-size: 1.3rem; font-weight: 800; color: var(--bg-dark); margin-bottom: 0.8rem;">+223 52095804</p>
-        
-        <div class="payment-row" style="margin-bottom: 0; padding-top: 0.6rem; border-top: 1px dashed var(--border);">
-          <span style="font-size: 0.85rem; color: var(--text-muted);">Tarif du document :</span>
-          <span style="font-weight: 800; color: var(--gold-dark);">1 000 FCFA</span>
+        <div class="payment-method" style="margin-bottom: 0;">
+          <span><i class="fa-solid fa-tag"></i> Tarif accès document :</span>
+          <strong>1 100 FCFA / document</strong>
         </div>
       </div>
 
-      <a id="btnWhatsappModal" href="#" target="_blank" class="btn-wa-confirm">
-        <i class="fa-brands fa-whatsapp"></i> Confirmer la transaction
+      <a id="btnWhatsappModal" href="#" target="_blank" class="btn-whatsapp">
+        <i class="fa-brands fa-whatsapp"></i> Confirmer la transaction sur WhatsApp
       </a>
     </div>
   </div>
 
-  <!-- FLOATING WHATSAPP BUTTON -->
-  <a href="https://wa.me/22352095804" target="_blank" class="float-wa" title="Contactez-nous sur WhatsApp">
-    <i class="fa-brands fa-whatsapp"></i>
-  </a>
-
-  <!-- TOAST NOTIFICATION -->
-  <div class="toast" id="toast">Numéro copié dans le presse-papier !</div>
-
-  <!-- FOOTER -->
+  <!-- FOOTER ET CONTACT -->
   <footer id="contact">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3>À propos d'EduExams Pro</h3>
-        <p style="color: #94a3b8; font-size: 0.92rem; line-height: 1.6;">
-          Plateforme dédiée à l'accompagnement des élèves pour la réussite de leurs épreuves nationales grâce à des ressources de haute qualité.
-        </p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>À propos d'EduExams</h3>
+        <p style="color: #94a3b8; font-size: 0.9rem;">Votre plateforme de référence pour réviser efficacement vos épreuves, accéder aux sujets d'examens nationaux et obtenir des corrigés certifiés.</p>
       </div>
 
-      <div class="footer-col">
-        <h3>Contact Officiel</h3>
-        <div class="contact-item"><i class="fa-solid fa-envelope"></i> b61813722@gmail.com</div>
-        <div class="contact-item"><i class="fa-solid fa-phone"></i> +223 52095804</div>
-        <div class="contact-item"><i class="fa-solid fa-location-dot"></i> Bamako, Mali</div>
+      <div class="footer-section">
+        <h3>Contact Direct</h3>
+        <ul class="contact-list">
+          <li><i class="fa-solid fa-envelope"></i> b61813722@gmail.com</li>
+          <li><i class="fa-solid fa-phone"></i> +223 82125851</li>
+          <li><i class="fa-solid fa-location-dot"></i> Bamako, Mali</li>
+        </ul>
       </div>
 
-      <div class="footer-col">
-        <h3>Paiement Sécurisé</h3>
-        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 0.8rem;">
-          Accès instantané après validation par :
-        </p>
-        <p style="font-weight: 700; color: var(--gold);"><i class="fa-solid fa-check-circle"></i> Orange Money & Moov Money</p>
+      <div class="footer-section">
+        <h3>Modes de Paiement VIP</h3>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem;">Transferts sécurisés par Mobile Money :</p>
+        <p style="font-weight: 700; color: #f59e0b;"><i class="fa-solid fa-check"></i> Orange Money & Moov Money & Wave</p>
       </div>
     </div>
 
     <div class="footer-bottom">
-      &copy; 2026 EduExams Pro. Tous droits réservés.
+      <p>&copy; 2026 EduExams. Tous droits réservés.</p>
     </div>
   </footer>
 
   <!-- JAVASCRIPT -->
   <script>
-    // 1. BASE DE DONNÉES DES DOCUMENTS
-    const baseDocuments = [
+    // 1. BASE DE DONNÉES DES DOCUMENTS (Ajoute tes propres PDF ici)
+    const documents = [
       {
         id: 1,
-        titre: "Épreuve de Philosophie - Bac TSS",
-        categorie: "sujet",
+        titre: "Sujet & Correction d'Épreuve de - Bac TSS",
+        categorie: "sujet & correction",
         type: "Gratuit",
-        description: "Sujet officiel de la session d'examen avec dissertation et explication de texte.",
-        fichier: "sujets/philo_tss_2025.pdf"
+        description: "Sujet officiel de la session d'examen BAC TSS.",
+        fichier: "https://1drv.ms/f/c/B1309958FB6EB3C0/IgARq4xl08xLQ6Gf1eVpdaBrAdMVObgpVj5EVUbK_KIXU-U"
       },
       {
         id: 2,
-        titre: "Annales Corrigées Philosophie - Bac Complète",
-        categorie: "vip",
-        type: "VIP",
-        description: "Corrigé entièrement rédigé pas à pas avec méthodologie et citations d'auteurs.",
-        fichier: "vip/philo_corrige_complet.pdf"
+        titre: "Sujet & Correction d'épreuve de Bac TSEXP",
+        categorie: "sujet & correction",
+        type: "Gratuit",
+        description: "Sujet. Et Corrigé rédigé pas à pas avec plans détaillés pour réussir l'épreuve.",
+        fichier: "https://1drv.ms/f/c/B1309958FB6EB3C0/IgBLzCq2gviYRpDNzb_fvjeLATUW354D1AqF5G4fhQl6EFA"
       },
       {
         id: 3,
-        titre: "Série d'Exercices Économie & Marché",
-        categorie: "exercice",
+        titre: "Sujet & corrigé d'épreuve de Bac TSE",
+        categorie: "Sujet & Correction",
         type: "Gratuit",
-        description: "Applications pratiques sur les calculs d'offre, de demande et d'élasticité.",
-        fichier: "exercices/economie_ex.pdf"
+        description: "Série de sujets & correction pratiques",
+        fichier: "https://1drv.ms/f/c/B1309958FB6EB3C0/IgAO8TuBucKtTIK1movM7OIdAfpJMXH-D8XO8mJRcszYx1o"
       },
       {
         id: 4,
-        titre: "Livre d'Histoire-Géo & Corrigés d'Examens",
+        titre: "Livre de Révision & Corrigés",
         categorie: "vip",
+        type: "Gratuit",
         type: "VIP",
-        description: "Manuel complet contenant les cours synthétisés et 5 ans de sujets corrigés.",
+        description: "Guide complet résumé + corrigés des sujets d'examen.",
         fichier: "vip/livre_histoire_geo.pdf"
       },
       {
         id: 5,
-        titre: "Épreuve de Sociologie & Anthropologie",
+        titre: "Sujet de Sociologie & Anthropologie",
         categorie: "sujet",
         type: "Gratuit",
-        description: "Sujet officiel pour les séries Sciences Sociales et Littéraires.",
+        description: "Épreuve théorique pour les séries Sociales et Littéraires.",
         fichier: "sujets/sociologie_2025.pdf"
+      },
+      {
+        id: 6,
+        titre: "Sujet & correction d'examen (TLL)",
+        categorie: "sujet & correction & grie",
+        type: "Gratuit",
+        description: "Sujet officil d'examen Bac.",
+        fichier: "https://1drv.ms/f/c/B1309958FB6EB3C0/IgDjYkBuVtmJSKxxyU-2pTzSAcB3HukgfiTq7v8VncH3Ses"
+      },
+      {
+        id: 7,
+        titre: "Proverbes & Citations en Français",
+        categorie: "proverbe & citation en Fançais",
+        type: "Gratuit",
+        description: "Recueil complet de 100 proverbes et 101 citations en français",
+        fichier: "https://1drv.ms/f/c/B1309958FB6EB3C0/IgAbb4Na-aTeSZ97b6T6K0yNAWR1i0ZMvqvQoZ95kYgymUk"
+      },
+      {
+        id: 8,
+        titre: "Livre de révision & corrigé & Annale corrigé etc...",
+        categorie: "Vip",
+        type: "Gratuit",
+        type: "VIP",
+        description: "Guide complet résumé + corrigés des sujets d'examen.",
+        fichier:  "vip/livre_histoire_geo.pdf"
       }
     ];
 
@@ -846,39 +588,35 @@
     const searchInput = document.getElementById('searchInput');
 
     // 2. FONCTION D'AFFICHAGE DES CARTES
-    function afficherRessources(docs) {
+    function afficherDocuments(liste) {
       cardsGrid.innerHTML = '';
 
-      if (docs.length === 0) {
-        cardsGrid.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--text-muted);">
-            <i class="fa-solid fa-folder-open" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
-            <p style="font-size: 1.1rem; font-weight: 600;">Aucune ressource ne correspond à votre recherche.</p>
-          </div>`;
+      if (liste.length === 0) {
+        cardsGrid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">Aucun document trouvé pour cette recherche.</p>`;
         return;
       }
 
-      docs.forEach(doc => {
+      liste.forEach(doc => {
         const isVip = doc.type === 'VIP';
         const card = document.createElement('article');
-        card.className = `doc-card ${isVip ? 'card-vip' : ''}`;
+        card.className = 'card';
 
         card.innerHTML = `
           <div>
-            <span class="card-badge ${isVip ? 'badge-vip' : 'badge-free'}">
-              ${isVip ? '<i class="fa-solid fa-crown"></i> Contenu VIP' : '<i class="fa-solid fa-circle-check"></i> Téléchargement Libre'}
+            <span class="badge ${isVip ? 'badge-vip' : 'badge-free'}">
+              ${isVip ? '<i class="fa-solid fa-crown"></i> Payant / VIP' : '<i class="fa-solid fa-file-pdf"></i> Gratuit'}
             </span>
-            <h3 class="doc-title">${doc.titre}</h3>
-            <p class="doc-desc">${doc.description}</p>
+            <h3 class="card-title">${doc.titre}</h3>
+            <p class="card-desc">${doc.description}</p>
           </div>
 
           ${isVip ? `
-            <button class="btn-action btn-unlock" onclick="ouvrirPaiement('${doc.titre.replace(/'/g, "\\'")}')">
-              <i class="fa-solid fa-lock-open"></i> Débloquer le Corrigé VIP
+            <button class="btn-action btn-vip" onclick="ouvrirModalPaiement('${doc.titre.replace(/'/g, "\\'")}')">
+              <i class="fa-solid fa-lock"></i> Débloquer le Corrigé VIP
             </button>
           ` : `
-            <a href="${doc.fichier}" target="_blank" download class="btn-action btn-download">
-              <i class="fa-solid fa-file-arrow-down"></i> Télécharger le PDF
+            <a href="${doc.fichier}" target="_blank" download class="btn-action btn-free">
+              <i class="fa-solid fa-download"></i> Télécharger (PDF)
             </a>
           `}
         `;
@@ -887,63 +625,66 @@
       });
     }
 
-    // 3. FILTRAGE ET RECHERCHE
-    let filtreActif = 'tous';
+    // 3. SYSTÈME DE FILTRAGE
+    let CategorieActuelle = 'tous';
 
-    function filtrerDocs(cat, btn) {
-      filtreActif = cat;
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    function filtrerCategorie(cat, element) {
+      CategorieActuelle = cat;
+      
+      // Mettre à jour l'apparence des boutons de filtres
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      element.classList.add('active');
+
       appliquerFiltres();
     }
 
     function appliquerFiltres() {
-      const query = searchInput.value.toLowerCase().trim();
+      const recherche = searchInput.value.toLowerCase().trim();
 
-      const resultats = baseDocuments.filter(doc => {
-        const matchCat = (filtreActif === 'tous') || 
-                         (filtreActif === 'vip' ? doc.type === 'VIP' : doc.categorie === filtreActif);
+      const resultats = documents.filter(doc => {
+        const correspondCategorie = (CategorieActuelle === 'tous') || 
+                                     (CategorieActuelle === 'vip' ? doc.type === 'VIP' : doc.categorie === CategorieActuelle);
         
-        const matchQuery = doc.titre.toLowerCase().includes(query) || 
-                           doc.description.toLowerCase().includes(query);
+        const correspondRecherche = doc.titre.toLowerCase().includes(recherche) || 
+                                     doc.description.toLowerCase().includes(recherche);
 
-        return matchCat && matchQuery;
+        return correspondCategorie && correspondRecherche;
       });
 
-      afficherRessources(resultats);
+      afficherDocuments(resultats);
     }
 
+    // Événement recherche
     searchInput.addEventListener('input', appliquerFiltres);
 
-    // 4. GESTION DE LA MODAL & COPIE
+    // 4. GESTION DU MODAL DE PAIEMENT
     const modal = document.getElementById('modalPaiement');
-    const modalDocTitle = document.getElementById('modalDocTitle');
+    const nomDocumentModal = document.getElementById('nomDocumentModal');
     const btnWhatsappModal = document.getElementById('btnWhatsappModal');
 
-    function ouvrirPaiement(titre) {
-      modalDocTitle.textContent = `Ressource : ${titre}`;
-      const msg = encodeURIComponent(`Bonjour, je souhaite débloquer le document VIP : "${titre}". J'ai effectué mon transfert au +223 52095804.`);
-      btnWhatsappModal.href = `https://wa.me/22352095804?text=${msg}`;
+    function ouvrirModalPaiement(titreDocument) {
+      nomDocumentModal.textContent = `Document : ${titreDocument}`;
+      
+      // Lien WhatsApp pré-rempli avec le nom du document
+      const messageWhatsapp = encodeURIComponent(`Bonjour, je souhaite débloquer le document VIP : "${titreDocument}". J'ai effectué mon paiement au +223 82125851.`);
+      btnWhatsappModal.href = `https://wa.me/22382125851?text=${messageWhatsapp}`;
+
       modal.style.display = 'flex';
     }
 
-    function fermerPaiement() {
+    function fermerModal() {
       modal.style.display = 'none';
     }
 
-    function copierNumero(numero) {
-      navigator.clipboard.writeText(numero);
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
+    // Fermer en cliquant à l'extérieur
+    window.onclick = function(event) {
+      if (event.target === modal) {
+        fermerModal();
+      }
     }
 
-    window.onclick = function(e) {
-      if (e.target === modal) fermerPaiement();
-    };
-
-    // Initialisation
-    afficherRessources(baseDocuments);
+    // Initialisation au chargement
+    afficherDocuments(documents);
   </script>
 </body>
-</html>
+</html>*
